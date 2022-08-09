@@ -1,0 +1,1 @@
+This project will most likely be closed to Hacktoberfest.
