@@ -26,7 +26,7 @@ public class User {
     private String bio;
 
     public boolean sameIdAs(User other) {
-        return false;
+        return true;
     }
 
     public void setId(int id) {
