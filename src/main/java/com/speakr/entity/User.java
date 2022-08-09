@@ -1,5 +1,7 @@
 package com.speakr.entity;
 
+import java.time.OffsetDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +20,21 @@ public class User {
     @Autowired
     private String displayName;
 
+    // TODO: Add field for join date
+
+    @Autowired
+    private String bio;
+
+    public boolean sameIdAs(User other) {
+        return false;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public void setUserName(String userName) {
@@ -36,6 +47,14 @@ public class User {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public String getBio() {
+        return this.bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
 }
