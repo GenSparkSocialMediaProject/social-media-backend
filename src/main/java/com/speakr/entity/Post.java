@@ -12,29 +12,24 @@ import javax.persistence.*;
 @Entity
 @Component
 @Table(name="tbl_post")
-public class    Post {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Autowired
     @Column
     private int postingUserId;
 
-    @Autowired
     @Column
     private String text;
 
-    @Autowired
     @Column
     private OffsetDateTime postTime;
 
-    @Autowired
     @Column(columnDefinition = "json")
     private String upVoters;
 
-    @Autowired
     @Column(columnDefinition = "json")
     private String downVoters;
 

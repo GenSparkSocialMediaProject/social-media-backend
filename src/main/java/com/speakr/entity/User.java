@@ -4,7 +4,6 @@ import java.time.OffsetDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.yaml.snakeyaml.tokens.ScalarToken;
 
 import javax.persistence.*;
 
@@ -16,19 +15,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Autowired
     @Column
     private String userName;
 
-    @Autowired
     @Column
     private String displayName;
 
-    @Autowired
     @Column
     private OffsetDateTime joinDate;
 
-    @Autowired
     @Column
     private String bio;
 
