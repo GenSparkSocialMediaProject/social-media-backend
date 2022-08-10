@@ -1,31 +1,50 @@
 package com.speakr.entity;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
-public class Post {
+import javax.persistence.*;
 
+@Entity
+@Component
+@Table(name="tbl_post")
+public class    Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Autowired
-    private User postingUser;
+    @Column
+    private int postingUserId;
 
     @Autowired
+    @Column
     private String text;
 
     @Autowired
+    @Column
     private OffsetDateTime postTime;
 
     @Autowired
-    private List<User> upVoters;
+    @Column(columnDefinition = "json")
+    private String upVoters;
 
     @Autowired
-    private List<User> downVoters;
+    @Column(columnDefinition = "json")
+    private String downVoters;
+
+    public Post(){}
+    public Post(int id, int postingUserId, String text) {
+        this.id = id;
+        this.postingUserId = postingUserId;
+        this.text = text;
+        this.postTime = OffsetDateTime.now();
+    }
 
     public int getId() {
         return id;
@@ -60,11 +79,13 @@ public class Post {
     }
 
     public List<User> getUpVoters() {
-        return new ArrayList<>(this.upVoters);
+        Gson gson = new Gson();
+        return gson.fromJson(this.upVoters,List.class);
     }
 
     public List<User> getDownVoters() {
-        return new ArrayList<>(this.downVoters);
+        Gson gson = new Gson();
+        return gson.fromJson(this.downVoters,List.class);
     }
 
 }

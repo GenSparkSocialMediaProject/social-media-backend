@@ -4,26 +4,46 @@ import java.time.OffsetDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.yaml.snakeyaml.tokens.ScalarToken;
 
+import javax.persistence.*;
+
+@Entity
 @Component
+@Table(name="tbl_user")
 public class User {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Autowired
+    @Column
+    private String userName;
+
+    @Autowired
+    @Column
+    private String displayName;
+
+    @Autowired
+    @Column
+    private OffsetDateTime joinDate;
+
+    @Autowired
+    @Column
+    private String bio;
+
+    public User(){}
+    public User(int id, String userName, String displayName, String bio) {
+        this.id = id;
+        this.userName = userName;
+        this.displayName = displayName;
+        this.bio = bio;
+        this.joinDate = OffsetDateTime.now();
+    }
 
     public int getId() {
         return id;
     }
-
-    @Autowired
-    private String userName;
-
-    @Autowired
-    private String displayName;
-
-    // TODO: Add field for join date
-
-    @Autowired
-    private String bio;
 
     public boolean sameIdAs(User other) {
         return this.id == other.id;
