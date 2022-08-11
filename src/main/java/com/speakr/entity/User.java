@@ -5,25 +5,39 @@ import java.time.OffsetDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
-public class User {
+import javax.persistence.*;
 
+@Entity
+@Component
+@Table(name="tbl_user")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column
+    private String userName;
+
+    @Column
+    private String displayName;
+
+    @Column
+    private OffsetDateTime joinDate;
+
+    @Column
+    private String bio;
+
+    public User(){}
+    public User(String userName, String displayName, String bio) {
+        this.userName = userName;
+        this.displayName = displayName;
+        this.bio = bio;
+        this.joinDate = OffsetDateTime.now();
+    }
 
     public int getId() {
         return id;
     }
-
-    @Autowired
-    private String userName;
-
-    @Autowired
-    private String displayName;
-
-    // TODO: Add field for join date
-
-    @Autowired
-    private String bio;
 
     public boolean sameIdAs(User other) {
         return this.id == other.id;

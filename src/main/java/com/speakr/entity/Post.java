@@ -1,31 +1,48 @@
 package com.speakr.entity;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
+@Entity
 @Component
+@Table(name="tbl_post")
 public class Post {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Autowired
-    private User postingUser;
+    @Column
+    private int postingUserId;
 
-    @Autowired
+    @Column
     private String text;
 
-    @Autowired
+    @Column
     private OffsetDateTime postTime;
 
-    @Autowired
-    private List<User> upVoters;
+    @Column
+    private String upVoters;
 
-    @Autowired
-    private List<User> downVoters;
+    @Column
+    private String downVoters;
+
+    public Post(){}
+    public Post(int postingUserId, String text) {
+        this.postingUserId = postingUserId;
+        this.text = text;
+        this.postTime = OffsetDateTime.now();
+    }
 
     public int getId() {
         return id;
@@ -51,20 +68,32 @@ public class Post {
         this.postTime = postTime;
     }
 
-    public void addUpVoter(User voter) {
+    public void addUpVoter(int userId) throws JsonProcessingException {
         // TODO: Write tests for this
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        List<Integer> upVoterList = Arrays.asList(1,2,3,4);
+
+        this.upVoters = mapper.writeValueAsString(upVoterList);
+
     }
 
     public void addDownVoter(User voter) {
         // TODO: Write tests for this
     }
 
-    public List<User> getUpVoters() {
-        return new ArrayList<>(this.upVoters);
+    public List<Integer> getUpVoters() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        List<Integer> upVoterList = mapper.readValue(this.upVoters, List.class);
+        return upVoterList;
     }
 
     public List<User> getDownVoters() {
-        return new ArrayList<>(this.downVoters);
+        Gson gson = new Gson();
+        return gson.fromJson(this.downVoters,List.class);
     }
 
 }
