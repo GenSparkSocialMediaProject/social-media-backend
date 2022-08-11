@@ -1,8 +1,12 @@
 package com.speakr.entity;
 
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,15 +31,14 @@ public class Post {
     @Column
     private OffsetDateTime postTime;
 
-    @Column(columnDefinition = "json")
+    @Column
     private String upVoters;
 
-    @Column(columnDefinition = "json")
+    @Column
     private String downVoters;
 
     public Post(){}
-    public Post(int id, int postingUserId, String text) {
-        this.id = id;
+    public Post(int postingUserId, String text) {
         this.postingUserId = postingUserId;
         this.text = text;
         this.postTime = OffsetDateTime.now();
@@ -65,17 +68,27 @@ public class Post {
         this.postTime = postTime;
     }
 
-    public void addUpVoter(User voter) {
+    public void addUpVoter(int userId) throws JsonProcessingException {
         // TODO: Write tests for this
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        List<Integer> upVoterList = Arrays.asList(1,2,3,4);
+
+        this.upVoters = mapper.writeValueAsString(upVoterList);
+
     }
 
     public void addDownVoter(User voter) {
         // TODO: Write tests for this
     }
 
-    public List<User> getUpVoters() {
-        Gson gson = new Gson();
-        return gson.fromJson(this.upVoters,List.class);
+    public List<Integer> getUpVoters() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        List<Integer> upVoterList = mapper.readValue(this.upVoters, List.class);
+        return upVoterList;
     }
 
     public List<User> getDownVoters() {

@@ -11,6 +11,7 @@ public interface UserService {
     User getUserById(int id);
 
     User addUser(User user);
+    User addUser(String userName, String displayName, String bio);
 
     User updateUser(User user);
 

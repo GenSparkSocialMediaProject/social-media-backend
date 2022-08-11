@@ -1,5 +1,6 @@
 package com.speakr.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.speakr.entity.Post;
 import com.speakr.entity.User;
 
@@ -23,5 +24,10 @@ public interface PostService {
     List<Post> getAllRepliesTo(Post post);
 
     Post editContent(Post post, String replacement);
+
+    Post addPost(int userId, String text);
+
+    Post addUpvote(int postId, int userId) throws JsonProcessingException;
+    List<Integer> getUpvoters(int postId) throws JsonProcessingException;
 
 }

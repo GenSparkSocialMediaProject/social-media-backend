@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User addUser(String userName, String displayName, String bio) {
+        return this.userDAO.save(new User(userName,displayName,bio));
+    }
+
+    @Override
     public User updateUser(User user) {
         return this.userDAO.save(user);
     }

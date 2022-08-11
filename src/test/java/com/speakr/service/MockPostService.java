@@ -4,11 +4,13 @@ import com.speakr.entity.Post;
 import com.speakr.entity.User;
 import com.speakr.entity.TestPostFactory;
 import com.speakr.entity.TestUserFactory;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class MockPostService implements PostService {
 
     // TODO: Write tests for this
