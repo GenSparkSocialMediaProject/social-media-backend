@@ -83,6 +83,12 @@ public class User {
         this.bio = bio;
     }
 
+    /**
+     * This override is provided for the sake of testing.
+     * @param obj The object to compare this <code>User</code> against.
+     * @return True if <code>obj</code> is another <code>User</code> with the
+     * same ID and username, false in any other case.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -94,14 +100,17 @@ public class User {
         if (!this.getClass().equals(obj.getClass())) {
             return false;
         }
-        return this.id == ((User) obj).id;
+        User other = (User) obj;
+        return this.id == other.id && this.userName.equals(other.userName);
     }
 
-    // TODO: Write tests for this (I want to be a little more deliberate than
-    //  simply having IntelliJ generate the equals and hash code overrides
+    /**
+     * This override is provided for the sake of testing.
+     * @return The same integer as the ID number.
+     */
     @Override
     public int hashCode() {
-        return Integer.MIN_VALUE;
+        return this.id;
     }
 
 }

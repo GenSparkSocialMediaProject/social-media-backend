@@ -115,18 +115,21 @@ class UserTest {
         assertNotEquals(userA, userB, msg);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Test of the hashCode function, of the User class. The ID and hash code of
+     * a User should match in order to keep things simple.
+     */
+    @Test
+    void testHashCode() {
+        System.out.println("hashCode");
+        int start = RANDOM.nextInt();
+        int stop = start + RANDOM.nextInt(128) + 32;
+        User user = new User();
+        for (int expected = start; expected < stop; expected++) {
+            user.setId(expected);
+            int actual = user.hashCode();
+            assertEquals(expected, actual);
+        }
+    }
 
 }
