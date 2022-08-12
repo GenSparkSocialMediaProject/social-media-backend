@@ -82,6 +82,39 @@ class UserTest {
         assertNotEquals(userA, userB, msg);
     }
 
+    @Test
+    void testEquals() {
+        System.out.println("equals");
+        int id = RANDOM.nextInt();
+        String userName = "MariaElena";
+        User someUser = new User();
+        User sameUser = new User();
+        someUser.setId(id);
+        sameUser.setId(id);
+        someUser.setUserName(userName);
+        sameUser.setUserName(userName);
+        String msg = "As the two users both have ID " + id + " and user name "
+                + userName + ", they should be considered equal";
+        assertEquals(someUser, sameUser, msg);
+    }
+
+    @Test
+    void testNotEqualsDiffUserName() {
+        int id = RANDOM.nextInt();
+        String userNameA = "Lando Calrissian Jones";
+        String userNameB = "Lando Calrissian Williams";
+        User userA = new User();
+        User userB = new User();
+        userA.setId(id);
+        userB.setId(id);
+        userA.setUserName(userNameA);
+        userB.setUserName(userNameB);
+        String msg = "Although both user " + userNameA + " and user "
+                + userNameB + " have ID " + id
+                + " they should not be considered equal";
+        assertNotEquals(userA, userB, msg);
+    }
+
 
 
 

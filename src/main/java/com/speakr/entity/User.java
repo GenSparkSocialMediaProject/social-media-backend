@@ -85,7 +85,16 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!this.getClass().equals(obj.getClass())) {
+            return false;
+        }
+        return this.id == ((User) obj).id;
     }
 
     // TODO: Write tests for this (I want to be a little more deliberate than
