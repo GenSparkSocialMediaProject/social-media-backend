@@ -3,7 +3,12 @@ package com.speakr.entity;
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests of the User class.
+ * @author Alonso del Arte
+ */
 class UserTest {
 
     private static final Random RANDOM = new Random();
@@ -34,5 +39,61 @@ class UserTest {
                 + " sameIdAs() should return false";
         assert !userA.sameIdAs(userB) : msg;
     }
+
+    @Test
+    void testReferentialEquality() {
+        User user = new User();
+        assertEquals(user, user);
+    }
+
+    private User provideNull() {
+        return null;
+    }
+
+    @Test
+    void testNotEqualsNull() {
+        User user = new User();
+        String msg = user + " should not equal null";
+        assert !user.equals(this.provideNull()) : msg;
+    }
+
+    private Object provideDiffClassObject() {
+        return new Post();
+    }
+
+    @Test
+    void testNotEqualsDiffClass() {
+        User user = new User();
+        Object obj = this.provideDiffClassObject();
+        String msg = user + " should not equal " + obj;
+        assert !user.equals(this.provideDiffClassObject()) : msg;
+    }
+
+    @Test
+    void testNotEqualsDiffID() {
+        User userA = new User();
+        int idForUserA = RANDOM.nextInt();
+        userA.setId(idForUserA);
+        User userB = new User();
+        int idForUserB = idForUserA + RANDOM.nextInt(8192) + 1;
+        userB.setId(idForUserB);
+        String msg = "Since userA has ID " + idForUserA + " and userB has ID "
+                + idForUserB + ", they should not be considered equal";
+        assertNotEquals(userA, userB, msg);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
