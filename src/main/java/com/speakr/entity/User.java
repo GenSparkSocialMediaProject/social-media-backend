@@ -2,15 +2,26 @@ package com.speakr.entity;
 
 import java.time.OffsetDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
-
+/**
+ * Represents a user of the Speakr! social media app.
+ * @author Alaciel de la Garza
+ * @author Alonso del Arte
+ */
 @Entity
 @Component
 @Table(name="tbl_user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -27,7 +38,8 @@ public class User {
     @Column
     private String bio;
 
-    public User(){}
+    public User() {}
+
     public User(String userName, String displayName, String bio) {
         this.userName = userName;
         this.displayName = displayName;
