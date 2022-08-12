@@ -75,6 +75,14 @@ public class User {
         this.displayName = displayName;
     }
 
+    public OffsetDateTime getJoinDate() {
+        return this.joinDate;
+    }
+
+    public void setJoinDate(OffsetDateTime joinDate) {
+        this.joinDate = joinDate;
+    }
+
     public String getBio() {
         return this.bio;
     }
