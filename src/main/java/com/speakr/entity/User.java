@@ -83,4 +83,18 @@ public class User {
         this.bio = bio;
     }
 
+    // TODO: Write tests for this (I want to be a little more deliberate than
+    //  simply having IntelliJ generate the equals and hash code overrides
+    @Override
+    public boolean equals(Object obj) {
+        return false;
+    }
+
+    // TODO: Write tests for this (I want to be a little more deliberate than
+    //  simply having IntelliJ generate the equals and hash code overrides
+    @Override
+    public int hashCode() {
+        return Integer.MIN_VALUE;
+    }
+
 }
