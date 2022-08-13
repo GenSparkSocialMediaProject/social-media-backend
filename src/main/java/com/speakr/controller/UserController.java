@@ -1,58 +1,25 @@
 package com.speakr.controller;
 
-import com.speakr.entity.User;
-import com.speakr.service.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
-
-    @Autowired
-    UserService userService;
-
-    // TODO: Write tests for this
-    @GetMapping("/")
-    public String homePage() {
-        return "NOT IMPLEMENTED YET";
-    }
-
-    // TODO: Write tests for this
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-
-    // TODO: Write tests for this
-    @GetMapping("/users/{userId}")
-    public User getUserById(@PathVariable String userId) {
-        return this.userService.getUserById(Integer.parseInt(userId));
-    }
-
-    // TODO: Write tests for this
-    @PostMapping("/users")
-    public User addUser(@RequestBody User user){
-        return this.userService.addUser(user);
-    }
-    @PostMapping("/users/add/{userName}/{displayName}/{bio}")
-    public User addUser(@PathVariable String userName,@PathVariable String displayName,@PathVariable String bio){
-        return this.userService.addUser(userName,displayName,bio);
-    }
-
-    // TODO: Write tests for this
-    @PutMapping("/users")
-    public User updateUser(@RequestBody User user) {
-        return this.userService.updateUser(user);
-    }
-
-    // TODO: Write tests for this
-    @DeleteMapping("/users/{userId}")
-    public String deleteByUserId(@PathVariable String userId) {
-        return "NOT IMPLEMENTED YET";
-        // this.userService.deleteUserById(Integer.parseInt(userId));
-    }
-
+	
+	@GetMapping
+	public Map<String, String> getUserName() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Map<String, String> userMap = new HashMap<>();
+		userMap.put("users", authentication.getName());
+		userMap.put("error", "false");
+		return userMap;
+	}
+	
 }
