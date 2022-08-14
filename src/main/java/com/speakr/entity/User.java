@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,24 +25,38 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
-    private String userName;
+    @Column(unique = true)
+    private String user_name;
 
     @Column
     private String displayName;
 
     @Column
     private OffsetDateTime joinDate;
-
+    
     @Column
     private String bio;
+    
+    @Column
+    private String role;
+    public String getPassword()
+    {
+        return password;
+    }
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+    @Column
+    private String password;
 
     public User() {}
 
-    public User(String userName, String displayName, String bio) {
-        this.userName = userName;
+    public User(String user_name, String displayName, String bio, String password) {
+        this.user_name = user_name;
         this.displayName = displayName;
         this.bio = bio;
+        this.password = password;
         this.joinDate = OffsetDateTime.now();
     }
 
@@ -59,12 +72,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return this.userName;
+    public String getUser_name() {
+        return this.user_name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getDisplayName() {
@@ -82,5 +95,26 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
-
+    
+    public void setRole(String role)
+    {
+        this.role = role;
+    }
+    
+    public String getRole() {
+        return this.role;
+    }
+    @Override
+    public String toString()
+    {
+        return "User{" +
+            "id=" + id +
+            ", userName='" + user_name + '\'' +
+            ", displayName='" + displayName + '\'' +
+            ", joinDate=" + joinDate +
+            ", bio='" + bio + '\'' +
+            ", role='" + role + '\'' +
+            ", password='" + password + '\'' +
+            '}';
+    }
 }
