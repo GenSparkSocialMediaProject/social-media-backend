@@ -27,10 +27,12 @@ public class JwtUserDetailsImp implements UserDetailsService
 			.filter(u ->
 				Objects.equals(u.getUser_name(), username))
 			.reduce((a, b) -> { throw new IllegalStateException("Multiple users: " + a + ", " + b);
-		}).orElse(null);
+			})
+			.orElse(null);
 		List<GrantedAuthority> authorityList = new ArrayList<>();
 		authorityList.add(new SimpleGrantedAuthority("USER_ROLE"));
 		System.out.println(UserDAO.findAll());
+		assert user != null;
 		return new org.springframework.security.core.userdetails.User
 			(user.getUser_name(), user.getPassword(), authorityList);
 	}
