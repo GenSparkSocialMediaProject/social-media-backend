@@ -30,10 +30,11 @@ A post record must have:
 
 * `Post_ID` (`String`)
 * `User_UUID` of the user posting the post (User from `user_tbl`) 
-* Timestamp (time)
-* Upvoters (JSON `UserID[]`?)
-* Downvoters (JSON `UserID[]`?)
-* Content (`String` up to 256 characters)
+* `Password` (`String`) hashed with bcrypt
+* `Timestamp` (time)
+* `Upvoters` (JSON `UserID[]`?)
+* `Downvoters` (JSON `UserID[]`?)
+* `Content` (`String` up to 256 characters)
 
 A post record may have:
 
