@@ -1,98 +1,99 @@
 package com.speakr.entity;
 
-import java.time.OffsetDateTime;
-import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.gson.Gson;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Component
-@Table(name="tbl_post")
-public class Post {
+@Table(name = "post_tbl")
+public class Post
+{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int post_id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @Column
-    private int postingUserId;
-
-    @Column
-    private String text;
-
-    @Column
-    private OffsetDateTime postTime;
-
-    @Column
-    private String upVoters;
-
-    @Column
-    private String downVoters;
-
-    public Post(){}
-    public Post(int postingUserId, String text) {
-        this.postingUserId = postingUserId;
-        this.text = text;
-        this.postTime = OffsetDateTime.now();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public OffsetDateTime getPostTime() {
-        return postTime;
-    }
-
-    public void setPostTime(OffsetDateTime postTime) {
-        this.postTime = postTime;
-    }
-
-    public void addUpVoter(int userId) throws JsonProcessingException {
-        // TODO: Write tests for this
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-        List<Integer> upVoterList = Arrays.asList(1,2,3,4);
-
-        this.upVoters = mapper.writeValueAsString(upVoterList);
-
-    }
-
-    public void addDownVoter(User voter) {
-        // TODO: Write tests for this
-    }
-
-    public List<Integer> getUpVoters() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-        List<Integer> upVoterList = mapper.readValue(this.upVoters, List.class);
-        return upVoterList;
-    }
-
-    public List<User> getDownVoters() {
-        Gson gson = new Gson();
-        return gson.fromJson(this.downVoters,List.class);
-    }
-
+	@Column
+	private String text;
+	
+	@Temporal(TemporalType.DATE)
+	private Date postTime;
+	
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@JoinColumn(name="parent_id")
+	private Set<Post> replies;
+	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+	
+	public Post() { }
+	public Post(String text, User user)
+	{
+		this.text = text;
+		this.user = user;
+		this.postTime = new Date();
+	}
+	
+	public int getPost_id()
+	{
+		return post_id;
+	}
+	public void setPost_id(int post_id)
+	{
+		this.post_id = post_id;
+	}
+	public String getText()
+	{
+		return text;
+	}
+	public void setText(String text)
+	{
+		this.text = text;
+	}
+	public Date getPostTime()
+	{
+		return postTime;
+	}
+	public void setPostTime(Date postTime)
+	{
+		this.postTime = postTime;
+	}
+	public User getUser()
+	{
+		return user;
+	}
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+	public void addReply(Post post) {
+		replies.add(post);
+	}
+	public void removeReply(Post post) {
+		replies.remove(post);
+	}
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,20 +81,22 @@ public class AuthenticationController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> saveUser(@RequestParam("username") String username,
-									  @RequestParam("displayName") String userName,
+									  @RequestParam("displayName") String displayName,
 									  @RequestParam("password") String password) {
 		Map<String, Object> responseMap = new HashMap<>();
 		User user = new User();
 		user.setUser_name(username);
 		user.setPassword(new BCryptPasswordEncoder().encode(password));
 		user.setRole("USER");
-		user.setUser_name(userName);
-		UserDetails userDetails = userDetailsService.createUserDetails(userName, password);
+		user.setDisplayName(displayName);
+		user.setJoinDate(new Date());
+		
+		UserDetails userDetails = userDetailsService.createUserDetails(username, password);
 		String token = jwtTokenUtil.generateToken(userDetails);
 		
 		userDAO.save(user);
 		responseMap.put("error", false);
-		responseMap.put("username", userName);
+		responseMap.put("username", username);
 		responseMap.put("message", "Account created successfully");
 		responseMap.put("token", token);
 		return ResponseEntity.ok(responseMap);
