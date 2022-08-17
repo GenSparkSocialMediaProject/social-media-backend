@@ -35,6 +35,10 @@
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
+<<<<<<< HEAD
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+=======
             <artifactId>jjwt-api</artifactId>
             <version>0.11.2</version>
         </dependency>
@@ -42,12 +46,17 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
             <version>0.11.2</version>
+>>>>>>> 6e1ceb4b86e938fba730f32a878253ba68fdae79
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
+<<<<<<< HEAD
+            <version>0.11.5</version>
+=======
             <version>0.11.2</version>
+>>>>>>> 6e1ceb4b86e938fba730f32a878253ba68fdae79
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -76,6 +85,12 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+<<<<<<< HEAD
+            <version>8.0.30</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+=======
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -84,6 +99,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+>>>>>>> 6e1ceb4b86e938fba730f32a878253ba68fdae79
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>

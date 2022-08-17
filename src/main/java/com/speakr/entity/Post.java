@@ -28,6 +28,77 @@ import java.util.Set;
 @Table(name = "post_tbl")
 public class Post
 {
+<<<<<<< HEAD
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int post_id;
+
+    @Column
+    private String text;
+
+    @Temporal(TemporalType.DATE)
+    private Date postTime;
+
+
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+    @JoinColumn(name="parent_id")
+    private Set<Post> replies;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public Post() { }
+    public Post(String text, User user)
+    {
+        this.text = text;
+        this.user = user;
+        this.postTime = new Date();
+    }
+
+    public int getPost_id()
+    {
+        return post_id;
+    }
+    public void setPost_id(int post_id)
+    {
+        this.post_id = post_id;
+    }
+    public String getText()
+    {
+        return text;
+    }
+    public void setText(String text)
+    {
+        this.text = text;
+    }
+    public Date getPostTime()
+    {
+        return postTime;
+    }
+    public void setPostTime(Date postTime)
+    {
+        this.postTime = postTime;
+    }
+    public User getUser()
+    {
+        return user;
+    }
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+    public void addReply(Post post) {
+        replies.add(post);
+    }
+    public void removeReply(Post post) {
+        replies.remove(post);
+    }
+
+=======
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -96,4 +167,5 @@ public class Post
 	public void removeReply(Post post) {
 		replies.remove(post);
 	}
+>>>>>>> 6e1ceb4b86e938fba730f32a878253ba68fdae79
 }
