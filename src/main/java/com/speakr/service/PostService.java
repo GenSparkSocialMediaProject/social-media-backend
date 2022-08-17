@@ -3,7 +3,6 @@ package com.speakr.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.speakr.entity.Post;
 import com.speakr.entity.User;
-import com.speakr.entity.Vote;
 
 import java.time.Duration;
 import java.util.List;
@@ -16,9 +15,9 @@ public interface PostService {
 
     Post updatePost(Post post);
 
-    boolean deletePostById(int id);
+    Post deletePostById(int id);
 
-    List<Post> getLatestPosts(int amount);
+    List<Post> getAllRecentPosts(Duration interval);
 
     List<Post> getAllPostsFrom(User user);
 
@@ -26,10 +25,9 @@ public interface PostService {
 
     Post editContent(Post post, String replacement);
 
-    Post addPost(String text, User user);
+    Post addPost(int userId, String text);
 
-    Vote addUpvote(Post post, User user) throws JsonProcessingException;
-    int getUpvotes(Post post) throws JsonProcessingException;
-    
-    Post addPost(Post post);
+    Post addUpvote(int postId, int userId) throws JsonProcessingException;
+    List<Integer> getUpvoters(int postId) throws JsonProcessingException;
+
 }

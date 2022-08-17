@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +52,8 @@ public class JwtTokenUtil
 		return Jwts.builder().setClaims(claims)
 			.setSubject(userDetails.getUsername())
 			.setIssuedAt(new Date(System.currentTimeMillis()))
-			.setExpiration(Date.from(ZonedDateTime.now().plusHours(24).toInstant()))
+			.setExpiration(new Date(
+				System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
 			.signWith(key)
 			.compact();
 	}
