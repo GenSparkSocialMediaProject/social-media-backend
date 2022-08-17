@@ -20,17 +20,4 @@ public class AppTest {
     @Autowired
     MockUserService mockUserService;
 
-    @Test
-    public void addUser() {
-        String userName = "alacielx";
-        String displayName = "Alaciel D.";
-        String bio = "Hello";
-        String password = "FOR TESTING PURPOSES ONLY";
-        fail("Test needs rewriting");
-        User user1 = new User(userName, displayName, bio, password);
-        this.mockUserService.addUser(user1);
-        // TODO: Finish writing the test and remove the next line
-        throw new AssertionError("Haven't finished writing this test");
-    }
-
 }
