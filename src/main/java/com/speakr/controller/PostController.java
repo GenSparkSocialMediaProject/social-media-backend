@@ -18,14 +18,14 @@ public class PostController {
     PostService postService;
     @PostMapping("/posts/add/{userId}/{post}")
     public Post addUser(@PathVariable int userId, @PathVariable String post){
-        return this.postService.addPost(14, post);
+        return this.postService.addPost("FOR TESTING PURPOSES", new User());
     }
     @PostMapping("/posts/add/{postId}/upvote")
     public Post addUser(@PathVariable int postId) throws JsonProcessingException {
-        return this.postService.addUpvote(postId, 14);
+        return new Post();// this.postService.addUpvote(postId, 14);
     }
     @GetMapping("/posts/upvoters/{postId}")
     public List<Integer> getUpvoters(@PathVariable int postId) throws JsonProcessingException {
-        return this.postService.getUpvoters(postId);
+        return new java.util.ArrayList<>();// this.postService.getUpvoters(postId);
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 /**
  * Unit test for simple App.
  */
@@ -23,7 +25,9 @@ public class AppTest {
         String userName = "alacielx";
         String displayName = "Alaciel D.";
         String bio = "Hello";
-        User user1 = new User(userName, displayName, bio);
+        String password = "FOR TESTING PURPOSES ONLY";
+        fail("Test needs rewriting");
+        User user1 = new User(userName, displayName, bio, password);
         this.mockUserService.addUser(user1);
         // TODO: Finish writing the test and remove the next line
         throw new AssertionError("Haven't finished writing this test");
