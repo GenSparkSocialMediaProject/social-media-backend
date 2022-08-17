@@ -19,11 +19,12 @@ class UserTest {
         User userA = new User();
         User userB = new User();
         int pseudorandomId = RANDOM.nextInt(1024) + 16;
-        userA.setId(pseudorandomId);
-        userB.setId(pseudorandomId);
-        String msg = "Since both " + userA + " and " + userB + " have ID "
-                + pseudorandomId + ", sameIdAs() should return true";
-        assert userA.sameIdAs(userB) : msg;
+        fail("Test needs rewriting");
+//        userA.setId(pseudorandomId);
+//        userB.setId(pseudorandomId);
+//        String msg = "Since both " + userA + " and " + userB + " have ID "
+//                + pseudorandomId + ", sameIdAs() should return true";
+//        assert userA.sameIdAs(userB) : msg;
     }
 
     @Test
@@ -32,12 +33,13 @@ class UserTest {
         User userB = new User();
         int pseudorandomIdA = RANDOM.nextInt(1024) + 16;
         int pseudorandomIdB = pseudorandomIdA + RANDOM.nextInt(1024) + 16;
-        userA.setId(pseudorandomIdA);
-        userB.setId(pseudorandomIdB);
-        String msg = "Given that " + userA + " has ID " + pseudorandomIdA
-                + " and " + userB + " has ID " + pseudorandomIdB
-                + " sameIdAs() should return false";
-        assert !userA.sameIdAs(userB) : msg;
+        fail("Test needs rewriting");
+//        userA.setId(pseudorandomIdA);
+//        userB.setId(pseudorandomIdB);
+//        String msg = "Given that " + userA + " has ID " + pseudorandomIdA
+//                + " and " + userB + " has ID " + pseudorandomIdB
+//                + " sameIdAs() should return false";
+//        assert !userA.sameIdAs(userB) : msg;
     }
 
     @Test
@@ -73,13 +75,14 @@ class UserTest {
     void testNotEqualsDiffID() {
         User userA = new User();
         int idForUserA = RANDOM.nextInt();
-        userA.setId(idForUserA);
-        User userB = new User();
-        int idForUserB = idForUserA + RANDOM.nextInt(8192) + 1;
-        userB.setId(idForUserB);
-        String msg = "Since userA has ID " + idForUserA + " and userB has ID "
-                + idForUserB + ", they should not be considered equal";
-        assertNotEquals(userA, userB, msg);
+        fail("Test needs rewriting");
+//        userA.setId(idForUserA);
+//        User userB = new User();
+//        int idForUserB = idForUserA + RANDOM.nextInt(8192) + 1;
+//        userB.setId(idForUserB);
+//        String msg = "Since userA has ID " + idForUserA + " and userB has ID "
+//                + idForUserB + ", they should not be considered equal";
+//        assertNotEquals(userA, userB, msg);
     }
 
     @Test
@@ -89,13 +92,14 @@ class UserTest {
         String userName = "MariaElena";
         User someUser = new User();
         User sameUser = new User();
-        someUser.setId(id);
-        sameUser.setId(id);
-        someUser.setUserName(userName);
-        sameUser.setUserName(userName);
-        String msg = "As the two users both have ID " + id + " and user name "
-                + userName + ", they should be considered equal";
-        assertEquals(someUser, sameUser, msg);
+        fail("Test needs rewriting");
+//        someUser.setId(id);
+//        sameUser.setId(id);
+//        someUser.setUserName(userName);
+//        sameUser.setUserName(userName);
+//        String msg = "As the two users both have ID " + id + " and user name "
+//                + userName + ", they should be considered equal";
+//        assertEquals(someUser, sameUser, msg);
     }
 
     @Test
@@ -105,14 +109,15 @@ class UserTest {
         String userNameB = "Lando Calrissian Williams";
         User userA = new User();
         User userB = new User();
-        userA.setId(id);
-        userB.setId(id);
-        userA.setUserName(userNameA);
-        userB.setUserName(userNameB);
-        String msg = "Although both user " + userNameA + " and user "
-                + userNameB + " have ID " + id
-                + " they should not be considered equal";
-        assertNotEquals(userA, userB, msg);
+        fail("Test needs rewriting");
+//        userA.setId(id);
+//        userB.setId(id);
+//        userA.setUserName(userNameA);
+//        userB.setUserName(userNameB);
+//        String msg = "Although both user " + userNameA + " and user "
+//                + userNameB + " have ID " + id
+//                + " they should not be considered equal";
+//        assertNotEquals(userA, userB, msg);
     }
 
     /**
@@ -125,11 +130,12 @@ class UserTest {
         int start = RANDOM.nextInt();
         int stop = start + RANDOM.nextInt(128) + 32;
         User user = new User();
-        for (int expected = start; expected < stop; expected++) {
-            user.setId(expected);
-            int actual = user.hashCode();
-            assertEquals(expected, actual);
-        }
+        fail("Test needs rewriting");
+//        for (int expected = start; expected < stop; expected++) {
+//            user.setId(expected);
+//            int actual = user.hashCode();
+//            assertEquals(expected, actual);
+//        }
     }
 
 }

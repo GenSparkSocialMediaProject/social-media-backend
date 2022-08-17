@@ -2,10 +2,7 @@ package com.speakr.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import com.speakr.entity.Post;
-import com.speakr.entity.User;
-import com.speakr.entity.TestPostFactory;
-import com.speakr.entity.TestUserFactory;
+import com.speakr.entity.*;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -36,12 +33,17 @@ public class MockPostService implements PostService {
 
     // TODO: Write tests for this
     @Override
-    public Post deletePostById(int id) {
-        return new Post();
+    public boolean deletePostById(int id) {
+        return false;
+    }
+
+    @Override
+    public List<Post> getLatestPosts(int amount) {
+        return null;
     }
 
     // TODO: Write tests for this
-    @Override
+//    @Override
     public List<Post> getAllRecentPosts(Duration interval) {
         return new ArrayList<>();
     }
@@ -64,20 +66,40 @@ public class MockPostService implements PostService {
         return new Post();
     }
 
-    // TODO: Write tests for this
     @Override
+    public Post addPost(String text, User user) {
+        return null;
+    }
+
+    @Override
+    public Vote addUpvote(Post post, User user) throws JsonProcessingException {
+        return null;
+    }
+
+    @Override
+    public int getUpvotes(Post post) throws JsonProcessingException {
+        return 0;
+    }
+
+    @Override
+    public Post addPost(Post post) {
+        return null;
+    }
+
+    // TODO: Write tests for this
+//    @Override
     public Post addPost(int userId, String text) {
         return null;
     }
 
     // TODO: Write tests for this
-    @Override
+//    @Override
     public Post addUpvote(int postId, int userId) throws JsonProcessingException {
         return null;
     }
 
     // TODO: Write tests for this
-    @Override
+//    @Override
     public List<Integer> getUpvoters(int postId) throws JsonProcessingException {
         return null;
     }
