@@ -14,11 +14,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtUserDetailsImp implements UserDetailsService {
+public class JwtUserDetailsImpl implements UserDetailsService {
 
     final UserDAO UserDAO;
 
-    public JwtUserDetailsImp(com.speakr.dao.UserDAO userDAO) {
+    public JwtUserDetailsImpl(com.speakr.dao.UserDAO userDAO) {
         this.UserDAO = userDAO;
     }
 

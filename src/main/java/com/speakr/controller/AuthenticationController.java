@@ -2,7 +2,7 @@ package com.speakr.controller;
 
 import com.speakr.dao.UserDAO;
 import com.speakr.entity.User;
-import com.speakr.service.JwtUserDetailsImp;
+import com.speakr.service.JwtUserDetailsImpl;
 import com.speakr.util.JwtTokenUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,12 +31,12 @@ public class AuthenticationController {
 
     final UserDAO userDAO;
     final AuthenticationManager authenticationManager;
-    final JwtUserDetailsImp userDetailsService;
+    final JwtUserDetailsImpl userDetailsService;
     final JwtTokenUtil jwtTokenUtil;
 
     public AuthenticationController(UserDAO userDAO,
                                     AuthenticationManager authenticationManager,
-                                    JwtUserDetailsImp userDetailsService,
+                                    JwtUserDetailsImpl userDetailsService,
                                     JwtTokenUtil jwtTokenUtil) {
         this.userDAO = userDAO;
         this.authenticationManager = authenticationManager;

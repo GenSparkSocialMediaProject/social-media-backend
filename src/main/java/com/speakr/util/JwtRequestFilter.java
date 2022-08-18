@@ -1,6 +1,6 @@
 package com.speakr.util;
 
-import com.speakr.service.JwtUserDetailsImp;
+import com.speakr.service.JwtUserDetailsImpl;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
@@ -24,11 +24,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-	private final JwtUserDetailsImp jwtUserDetailsService;
+	private final JwtUserDetailsImpl jwtUserDetailsService;
 
 	private final JwtTokenUtil jwtTokenUtil;
 	
-	public JwtRequestFilter(JwtUserDetailsImp jwtUserDetailsService,
+	public JwtRequestFilter(JwtUserDetailsImpl jwtUserDetailsService,
 							JwtTokenUtil jwtTokenUtil) {
 		this.jwtUserDetailsService = jwtUserDetailsService;
 		this.jwtTokenUtil = jwtTokenUtil;
