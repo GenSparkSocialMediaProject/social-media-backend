@@ -34,8 +34,10 @@ public class AuthenticationController {
     final JwtUserDetailsImp userDetailsService;
     final JwtTokenUtil jwtTokenUtil;
 
-    public AuthenticationController(UserDAO userDAO, AuthenticationManager authenticationManager,
-                                    JwtUserDetailsImp userDetailsService, JwtTokenUtil jwtTokenUtil) {
+    public AuthenticationController(UserDAO userDAO,
+                                    AuthenticationManager authenticationManager,
+                                    JwtUserDetailsImp userDetailsService,
+                                    JwtTokenUtil jwtTokenUtil) {
         this.userDAO = userDAO;
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
@@ -47,11 +49,14 @@ public class AuthenticationController {
                                        @RequestParam("password") String password) {
         Map<String, Object> responseMap = new HashMap<>();
         try {
-            Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username
-                    , password));
+            Authentication auth
+                    = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(username,
+                            password));
             if (auth.isAuthenticated()) {
                 logger.info("Logged In");
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                UserDetails userDetails = userDetailsService
+                        .loadUserByUsername(username);
                 String token = jwtTokenUtil.generateToken(userDetails);
                 responseMap.put("error", false);
                 responseMap.put("message", "Logged In");
@@ -90,10 +95,9 @@ public class AuthenticationController {
         user.setRole("USER");
         user.setDisplayName(displayName);
         user.setJoinDate(new Date());
-
-        UserDetails userDetails = userDetailsService.createUserDetails(username, password);
+        UserDetails userDetails = userDetailsService
+                .createUserDetails(username, password);
         String token = jwtTokenUtil.generateToken(userDetails);
-
         userDAO.save(user);
         responseMap.put("error", false);
         responseMap.put("username", username);

@@ -29,6 +29,7 @@ public interface PostService {
     Post addPost(String text, User user);
 
     Vote addUpvote(Post post, User user) throws JsonProcessingException;
+
     int getUpvotes(Post post) throws JsonProcessingException;
 
     Post addPost(Post post);

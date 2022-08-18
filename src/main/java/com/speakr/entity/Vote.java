@@ -1,8 +1,6 @@
 package com.speakr.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -17,10 +15,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "vote_tbl")
-public class Vote
-{
+public class Vote {
+
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +45,7 @@ public class Vote
     @NotNull private int increment;
 
     public Post getPost() {
-        return post;
+        return this.post;
     }
 
     public void setPost(Post post) {
@@ -58,6 +59,7 @@ public class Vote
     public void setId(int id) {
         this.id = id;
     }
+
     public User getUser() {
         return this.user;
     }

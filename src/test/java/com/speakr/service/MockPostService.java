@@ -2,7 +2,9 @@ package com.speakr.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import com.speakr.entity.*;
+import com.speakr.entity.Post;
+import com.speakr.entity.User;
+import com.speakr.entity.Vote;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ public class MockPostService implements PostService {
         return false;
     }
 
+    // TODO: Write tests for this
     @Override
     public List<Post> getLatestPosts(int amount) {
         return null;
