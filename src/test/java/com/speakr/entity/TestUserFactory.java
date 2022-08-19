@@ -10,8 +10,8 @@ public class TestUserFactory {
     private static List<User> userList = new ArrayList<>();
 
     public static User createNewUser() {
-        String name = "James Public " + userCount;
-        String displayName = "jPublic" + userCount;
+        String name = "jPublic" + userCount;
+        String displayName = "James Public " + userCount;
         String bio = "World's #" + userCount + " best dad";
         User user = new User(name, displayName, bio);
         userList.add(user);
@@ -21,7 +21,7 @@ public class TestUserFactory {
 
     // TODO: Write tests for this
     public static User giveExistingUser() {
-        return new User();
+        return new User("jqPublic", "John Q. Public", "Person");
     }
 
 }
