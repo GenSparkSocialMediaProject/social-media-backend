@@ -13,9 +13,9 @@ import javax.persistence.TemporalType;
 
 /**
  * Represents a user of the Speakr! social media app.
- * @author Alaciel de la Garza
- * @author Alonso del Arte
- * @author Lexi Henson
+ * @author Alaciel de la Garza -- SQL mapping
+ * @author Lexi Henson -- SQL mapping
+ * @author Alonso del Arte -- initial stub
  */
 @Entity
 @Table(name = "tbl_user")
