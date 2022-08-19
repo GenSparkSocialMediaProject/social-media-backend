@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Provides fictional users for use in tests of the User class. Most of them are
+ * named James Public followed by a number, with username "jPublic" with the
+ * same number appended.
+ * @author Alonso del Arte
+ */
 public class TestUserFactory {
 
     private static int userCount = 0;
