@@ -1,12 +1,7 @@
 package com.speakr.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,11 +11,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+/**
+ * Represents a vote on a post in the Speakr! social media app. It may be an
+ * upvote or a downvote.
+ * @author Lexi Henson -- original concept
+ * @author Alonso del Arte -- minor details
+ */
 @Entity
 @Table(name = "vote_tbl")
-public class Vote
-{
+public class Vote {
+
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +51,7 @@ public class Vote
     @NotNull private int increment;
 
     public Post getPost() {
-        return post;
+        return this.post;
     }
 
     public void setPost(Post post) {
@@ -58,6 +65,7 @@ public class Vote
     public void setId(int id) {
         this.id = id;
     }
+
     public User getUser() {
         return this.user;
     }

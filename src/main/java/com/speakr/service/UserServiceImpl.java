@@ -33,7 +33,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(String userName, String displayName, String bio) {
-        return this.userDAO.save(new User(userName,displayName,bio,"NOT A PROPER PASSWORD"));
+        return this.userDAO.save(new User(userName,displayName,bio,
+                "NOT A PROPER PASSWORD"));
     }
 
     @Override

@@ -2,11 +2,12 @@ package com.speakr.service;
 
 import com.speakr.dao.UserDAO;
 import com.speakr.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MockUserService implements UserService {
