@@ -26,8 +26,23 @@ public class TestUserFactory {
         return user;
     }
 
+    /**
+     * Indicates how recently a user was created by this test user factory. Note
+     * that this function is package private, it is not intended for use outside
+     * this package.
+     * @param user The user to check for recency. For example, James Public III.
+     * @return If <code>user</code> was given by this test user factory, zero or
+     * a positive integer, where zero indicates the most recently created user.
+     * Otherwise a negative integer, most likely &minus;1. Don't read any
+     * particular significance into any other negative integer.
+     */
     static int recency(User user) {
-        return Math.abs(userCount - USER_LIST.indexOf(user) - 1);
+        int index = USER_LIST.indexOf(user);
+        if (index < 0) {
+            return index;
+        } else {
+            return userCount - index;
+        }
     }
 
     public static User giveExistingUser() {

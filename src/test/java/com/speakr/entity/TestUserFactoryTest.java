@@ -56,7 +56,15 @@ class TestUserFactoryTest {
 
     @Test
     void testNegativeRecencyForNonFactoryCreatedUser() {
-        fail("Haven't written test yet");
+        String name = "Mxy";
+        String displayName = "Mr. Mxyzptlk";
+        String bio = "Superman's best friend, Supergirl's too";
+        User nonFactoryCreatedUser = new User(name, displayName, bio);
+        int actual = TestUserFactory.recency(nonFactoryCreatedUser);
+        String msg = "Given that this test class made " + displayName
+                + " rather than the factory, recency should be negative";
+        System.out.println(actual);
+        assert actual < 0 : msg;
     }
 
     @Test
