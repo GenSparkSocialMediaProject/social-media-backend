@@ -26,6 +26,11 @@ public class TestUserFactory {
         return user;
     }
 
+    // TODO: Write tests for this
+    public int recency(User user) {
+        return Integer.MIN_VALUE;
+    }
+
     public static User giveExistingUser() {
         if (userCount == 0) {
             String excMsg = "No existing users to give";
