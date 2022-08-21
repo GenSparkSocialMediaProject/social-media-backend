@@ -63,7 +63,6 @@ class TestUserFactoryTest {
         int actual = TestUserFactory.recency(nonFactoryCreatedUser);
         String msg = "Given that this test class made " + displayName
                 + " rather than the factory, recency should be negative";
-        System.out.println(actual);
         assert actual < 0 : msg;
     }
 
@@ -79,9 +78,7 @@ class TestUserFactoryTest {
         User user = TestUserFactory.giveExistingUser();
         String msg = "giveExistingUser() gave user " + user.getUserName()
                 + " who should have already been given by createNewUser()";
-//        assert TestUserFactory.isFactoryGiven(user) : msg;
-//        assert USER_SET.contains(user) : msg;
-        fail("Figure out how to rewrite this test");
+        assert TestUserFactory.recency(user) > -1 : msg;
     }
 
     @Test
@@ -89,7 +86,7 @@ class TestUserFactoryTest {
         System.out.println("giveUserOtherThan");
         User user = TestUserFactory.createNewUser();
         User otherUser = TestUserFactory.giveUserOtherThan(user);
-        String msg = "giveUserOtherThan( ) should give user other than "
+        String msg = "giveUserOtherThan() should give user other than "
                 + user.getUserName();
         assertNotEquals(user, otherUser, msg);
     }

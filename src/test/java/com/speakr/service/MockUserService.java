@@ -2,6 +2,8 @@ package com.speakr.service;
 
 import com.speakr.dao.UserDAO;
 import com.speakr.entity.User;
+import com.speakr.entity.TestPostFactory;
+import com.speakr.entity.TestUserFactory;
 
 import java.util.ArrayList;
 import java.util.List;

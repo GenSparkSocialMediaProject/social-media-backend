@@ -33,7 +33,7 @@ public class TestUserFactory {
      * @param user The user to check for recency. For example, James Public III.
      * @return If <code>user</code> was given by this test user factory, zero or
      * a positive integer, where zero indicates the most recently created user.
-     * Otherwise a negative integer, most likely &minus;1. Don't read any
+     * Otherwise, a negative integer, most likely &minus;1. Don't read any
      * particular significance into any other negative integer.
      */
     static int recency(User user) {
@@ -41,7 +41,7 @@ public class TestUserFactory {
         if (index < 0) {
             return index;
         } else {
-            return userCount - index;
+            return userCount - index - 1;
         }
     }
 
