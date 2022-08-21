@@ -95,9 +95,8 @@ public class Post {
         this.replies.remove(post);
     }
 
-    // TODO: Write tests for this
     public Set<Post> getReplies() {
-        return new HashSet<>();
+        return this.replies;
     }
 
     public Post() { }
@@ -106,6 +105,7 @@ public class Post {
         this.text = text;
         this.user = user;
         this.postTime = new Date();
+        this.replies = new HashSet<>();
     }
 
 }

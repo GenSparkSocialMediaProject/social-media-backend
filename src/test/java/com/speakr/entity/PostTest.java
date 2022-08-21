@@ -22,10 +22,21 @@ class PostTest {
     @Test
     void testGetReplies() {
         System.out.println("getReplies");
-//        fail("Haven't written test yet");
-        // The line above is commented out because I needed the commit to pass
-        // all the GitHub workflow tests prior to my taking a little break from
-        // this project.
+        User originalPoster = TestUserFactory.createNewUser();
+        Post post = TestPostFactory.makeNewPostFrom(originalPoster);
+        User respondent = TestUserFactory.giveUserOtherThan(originalPoster);
+        String replyText = "Couldn't agree more!";
+        Post reply = new Post(replyText, respondent);
+        post.addReply(reply);
+        Set<Post> replies = post.getReplies();
+        String msg = "Reply to \"" + post.getText() + "\" from "
+                + post.getUser().getDisplayName() + " should include reply \""
+                + replyText + "\" from " + respondent.getDisplayName();
+        assert replies.contains(reply) : msg;
     }
+
+    // TODO: Write test requiring getReplies() not to leak private field
+    //  reference. Though with the mockery that Spring makes of access
+    //  modifiers, this might be moot...
 
 }

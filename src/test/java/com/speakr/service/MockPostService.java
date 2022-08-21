@@ -5,6 +5,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.speakr.entity.Post;
 import com.speakr.entity.User;
 import com.speakr.entity.Vote;
+import com.speakr.entity.TestPostFactory;
+import com.speakr.entity.TestUserFactory;
 
 import java.time.Duration;
 import java.util.ArrayList;
