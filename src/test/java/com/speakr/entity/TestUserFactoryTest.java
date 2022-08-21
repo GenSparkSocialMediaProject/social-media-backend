@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,19 +13,10 @@ class TestUserFactoryTest {
 
     private static final Random RANDOM = new Random();
 
-    /**
-     * Set of all users created during one execution of this test class. Please
-     * be sure to add any User created by TestUserFactory.createNewUser() to
-     * this set. I am aware that the concern this addresses might be moot in
-     * JUnit. It might be relevant in TestNG, I don't know.
-     */
-    private static final Set<User> USER_SET = new HashSet<>();
-
     @Test
     void testCreateNewUser() {
         System.out.println("createNewUser");
         User user = TestUserFactory.createNewUser();
-        USER_SET.add(user);
         assert user.getUserName() != null : "User name should not be null";
         assert user.getDisplayName() != null
                 : "Display name should not be null";
@@ -39,7 +29,6 @@ class TestUserFactoryTest {
         for (int i = 0; i < expected; i++) {
             User user = TestUserFactory.createNewUser();
             users.add(user);
-            USER_SET.add(user);
         }
         int actual = users.size();
         String msg = "createNewUser() should have given " + expected
@@ -48,18 +37,43 @@ class TestUserFactoryTest {
     }
 
     @Test
+    void testRecency() {
+        System.out.println("recency");
+        User firstUser = TestUserFactory.createNewUser();
+        String msg = "Most recent new user should have recency 0";
+        assert TestUserFactory.recency(firstUser) == 0 : msg;
+        int leastRecency = RANDOM.nextInt(16) + 4;
+        String msgPart = firstUser.getDisplayName()
+                + " should now have recency ";
+        for (int expected = 1; expected < leastRecency; expected++) {
+            User latestNewUser = TestUserFactory.createNewUser();
+            assert TestUserFactory.recency(latestNewUser) == 0 : msg;
+            int actual = TestUserFactory.recency(firstUser);
+            String recencyMsg = msgPart + expected;
+            assertEquals(expected, actual, recencyMsg);
+        }
+    }
+
+    @Test
+    void testNegativeRecencyForNonFactoryCreatedUser() {
+        fail("Haven't written test yet");
+    }
+
+    @Test
     void testGiveExistingUser() {
+        System.out.println("giveExistingUser");
         int capacity = RANDOM.nextInt(64) + 16;
         List<User> users = new ArrayList<>(capacity);
         while (users.size() < capacity) {
             User user = TestUserFactory.createNewUser();
             users.add(user);
-            USER_SET.add(user);
         }
         User user = TestUserFactory.giveExistingUser();
         String msg = "giveExistingUser() gave user " + user.getUserName()
                 + " who should have already been given by createNewUser()";
-        assert USER_SET.contains(user) : msg;
+//        assert TestUserFactory.isFactoryGiven(user) : msg;
+//        assert USER_SET.contains(user) : msg;
+        fail("Figure out how to rewrite this test");
     }
 
     @Test
@@ -67,16 +81,9 @@ class TestUserFactoryTest {
         System.out.println("giveUserOtherThan");
         User user = TestUserFactory.createNewUser();
         User otherUser = TestUserFactory.giveUserOtherThan(user);
-        USER_SET.add(user);
-        USER_SET.add(otherUser);
         String msg = "giveUserOtherThan( ) should give user other than "
                 + user.getUserName();
         assertNotEquals(user, otherUser, msg);
-    }
-
-    @AfterEach
-    void reportUserSetSize() {
-        System.out.println("User set has " + USER_SET.size() + " users");
     }
 
 }

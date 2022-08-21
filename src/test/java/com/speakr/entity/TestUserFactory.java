@@ -26,9 +26,8 @@ public class TestUserFactory {
         return user;
     }
 
-    // TODO: Write tests for this
-    public int recency(User user) {
-        return Integer.MIN_VALUE;
+    static int recency(User user) {
+        return Math.abs(userCount - USER_LIST.indexOf(user) - 1);
     }
 
     public static User giveExistingUser() {
