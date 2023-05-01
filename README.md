@@ -5,8 +5,7 @@ WORKING TITLE: "SPEAKR"
 A social media forum sort of like Reddit or Twitter.
 
 This is a group project for a class using Spring Boot and MySQL on the back end, 
-and React on the front end. The build tool for Java is Maven, mostly because of 
-Spring and not because we particularly like it all that much.
+and React on the front end. The build tool is Maven.
 
 ## Database
 
